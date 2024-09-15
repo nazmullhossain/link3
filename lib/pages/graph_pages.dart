@@ -17,8 +17,8 @@ class _SensorHomePageState extends State<SensorHomePage> {
   final List<FlSpot> accelerometerXSpots = [];
   final List<FlSpot> gyroscopeXSpots = [];
 
-  late StreamSubscription<AccelerometerEvent> _accelerometerSubscription;
-  late StreamSubscription<GyroscopeEvent> _gyroscopeSubscription;
+  late StreamSubscription<AccelerometerEvent>? _accelerometerSubscription;
+  late StreamSubscription<GyroscopeEvent>? _gyroscopeSubscription;
 
   double _currentTime = 0;
 
@@ -51,8 +51,8 @@ class _SensorHomePageState extends State<SensorHomePage> {
 
   @override
   void dispose() {
-    _accelerometerSubscription.cancel();
-    _gyroscopeSubscription.cancel();
+    _accelerometerSubscription!.cancel();
+    _gyroscopeSubscription!.cancel();
     super.dispose();
   }
 
