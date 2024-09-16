@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
+import '../constants/app_color.dart';
+
 
 class SensorHomePage extends StatefulWidget {
   @override
@@ -64,7 +66,7 @@ class _SensorHomePageState extends State<SensorHomePage> {
         lineBarsData: [
           LineChartBarData(
             isCurved: true,
-            color: Colors.blue,
+            color: Colors.red,
             spots: spots,
             dotData: FlDotData(show: false),
           ),
@@ -80,25 +82,47 @@ class _SensorHomePageState extends State<SensorHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sensor Data Visualizer'),
+        title: Text('Sensor Data'),
+        backgroundColor: AppColor.primaryColor,
+        centerTitle: true,
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('Accelerometer: X: ${accelerometer[0]}, Y: ${accelerometer[1]}, Z: ${accelerometer[2]}'),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('Gyroscope: X: ${gyroscope[0]}, Y: ${gyroscope[1]}, Z: ${gyroscope[2]}'),
-          ),
+
+
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  Text('Accelerometer X-axis'),
-                  Expanded(child: buildGraph(accelerometerXSpots, 'Accelerometer X')),
+                  Text('Accelerometer Sensor Data'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Accelerometer: X: ${accelerometer[0]}, Y: ${accelerometer[1]}, Z: ${accelerometer[2]}'),
+                  ),
+                  Container(
+                    height: 150,
+                      width: double.infinity,
+                      child: buildGraph(accelerometerXSpots, 'Accelerometer X')),
+                ],
+              ),
+            ),
+          ),
+
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text('Metting'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Gyroscope: X: ${gyroscope[0]}, Y: ${gyroscope[1]}, Z: ${gyroscope[2]}'),
+                  ),
+                  Container(
+                      height: 150,
+                      width: double.infinity,
+                      child: buildGraph(gyroscopeXSpots, 'Gyroscope X')),
                 ],
               ),
             ),
@@ -108,8 +132,15 @@ class _SensorHomePageState extends State<SensorHomePage> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  Text('Gyroscope X-axis'),
-                  Expanded(child: buildGraph(gyroscopeXSpots, 'Gyroscope X')),
+                  Text('Walking'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Gyroscope: X: ${gyroscope[0]}, Y: ${gyroscope[1]}, Z: ${gyroscope[2]}'),
+                  ),
+                  Container(
+                      height: 150,
+                      width: double.infinity,
+                      child: buildGraph(gyroscopeXSpots, 'Gyroscope X')),
                 ],
               ),
             ),

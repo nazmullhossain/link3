@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
 
+import '../constants/app_color.dart';
+import '../controller/get_controller_data.dart';
 import 'graph_pages.dart';
+import 'alarmHomeScreen.dart';
 
-class HomePages extends StatelessWidget {
+class HomePages extends StatefulWidget {
   const HomePages({super.key});
 
+  @override
+  State<HomePages> createState() => _HomePagesState();
+}
+
+class _HomePagesState extends State<HomePages> {
+
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    GetController.subscription!.cancel();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
         centerTitle: true,
-        backgroundColor: Colors.amber,
+        backgroundColor: AppColor.primaryColor,
 
       ),
       body: SingleChildScrollView(
@@ -22,16 +39,21 @@ class HomePages extends StatelessWidget {
 
             children: [
               SizedBox(height: MediaQuery.of(context).size.height*0.2,),
-              Container(
-                alignment: Alignment.center,
-                width: double.infinity,
-                padding: EdgeInsets.all(50),
-                decoration: BoxDecoration(
-                  color: Color(0xff33CCCC),
-                  borderRadius: BorderRadius.circular(10)
+              InkWell(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>AlarmHomeScreen()));
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  padding: EdgeInsets.all(50),
+                  decoration: BoxDecoration(
+                    color: Color(0xff33CCCC),
+                    borderRadius: BorderRadius.circular(10)
 
+                  ),
+                  child: Text("Todo",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                 ),
-                child: Text("Todo",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
               ),
               SizedBox(height: 10,),
               GestureDetector(
